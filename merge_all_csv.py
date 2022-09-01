@@ -7,7 +7,8 @@ import glob
 import os
   
 # merging the files
-joined_files = os.path.join("C:\DW", "TRN_EXPENSE_BEFORE_2022*.csv")
+joined_files = os.path.join("C:\\DW", "TRN_EXPENSE_BEFORE_2022*.csv")
+print(joined_files)
   
 # A list of all joined files is returned
 joined_list = glob.glob(joined_files)

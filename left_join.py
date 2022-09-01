@@ -3,21 +3,23 @@
 import pandas as pd # นำเข้า library pandas
 
 # data = pd.read_excel('C:\DW\TRN_EXPESNE_BEFORE_EXCEL_2022.xlsx') # อ่านไฟล์ ไปไว้ตัวแปร data
-data = pd.read_csv('C:\DW\TRN_EXPENSE_BEFORE_NT1_2022.csv')
-lookup = pd.read_csv('C:\DW\EXPENSE_GL_CODE_NT1_NT.csv', encoding= 'tis-620') # อ่านไฟล์ ไปไว้ใน lookup
+data = pd.read_csv('C:\\DW\\TRN_EXPENSE_BEFORE_NT1_2022.csv')
+lookup = pd.read_csv('C:\\DW\\EXPENSE_GL_CODE_NT1_NT.csv', encoding= 'tis-620') # อ่านไฟล์ ไปไว้ใน lookup
+org = pd.read_csv('D:\share\master\MASTER_ORGANIZATION_NT.csv', sep='\t')
 
 # print(df.to_string()) 
 # print(df)
 
 print(data.head()) # พิมพ์ โครงสร้างไฟล์ data ออกมาดู
 print(lookup.head())
+print(org.head())
 
 # dg['GL_CODE_NT1'] = dg['GL_CODE_NT1'].astype(int)
 data['GL_CODE'] = data['GL_CODE'].astype(str) # เปลี่ยน column GL_CODE ให้เป็น string
 data.rename(columns={'GL_CODE': 'GL_CODE_NT1'}, inplace=True) # เปลี่ยนชื่อ column GL_CODE เป็น GL_CODE_NT1
 
 # ทำการ merge หรือ การทำแบบ vlookup ของ excel / left join
-merged = pd.merge(
+mod = pd.merge(
     data,
     lookup,
     left_on = ['GL_CODE_NT1'],
@@ -25,14 +27,18 @@ merged = pd.merge(
     how = 'left'
     )
 
-print(merged.head())
+print(mod.head())
 
-del merged['GL_CODE_NT1'] # ลบ column GL_CODE_NT1
-del merged['GL_NAME_NT1']
+del mod['GL_CODE_NT1'] # ลบ column GL_CODE_NT1
+del mod['GL_NAME_NT1']
 
-print(merged.head())
+print(mod.head())
 
-merged.to_csv('C:\DW\merged_output.csv', index=False) # เขียนผลลัพธ์ ลงไฟล์ 
+output = pd.merge(mod, org, left_on=['COST_CENTER'], right_on=['COST_CENTER'], how='left')
+
+
+output.to_csv('C:\\DW\\EXPENSE_DATA_2022.csv', index=False) # เขียนผลลัพธ์ ลงไฟล์ 
+# mod.to_csv('C:\\DW\\EXPENSE_DATA_2022.csv', index=False) # เขียนผลลัพธ์ ลงไฟล์ 
 
 # help me
 # https://note.nkmk.me/en/python-pandas-dataframe-rename/#:~:text=You%20can%20use%20the%20rename,change%20column%2Findex%20name%20individually.&text=Specify%20the%20original%20name%20and,is%20for%20the%20index%20name.
