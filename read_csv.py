@@ -11,4 +11,7 @@ lookup = pd.read_csv('C:\DW\EXPENSE_GL_CODE_NT1_NT.csv', encoding= 'tis-620') # 
 print(data.head()) # พิมพ์ โครงสร้างไฟล์ data ออกมาดู
 print(lookup.head())
 
+print("Grand Total = ", end=" ")
+print(data['EXPENSE_VALUE'].sum())
 
+print("Grand Total = ", "{:,.2f}".format(data['EXPENSE_VALUE'].sum()))
