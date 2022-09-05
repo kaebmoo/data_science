@@ -1,3 +1,8 @@
+# https://rpaframework.org/libraries/browser_selenium/python.html
+# https://robocorp.com/docs/development-guide/browser/how-to-switch-between-browser-windows
+# https://robocorp.com/docs/development-guide/python/python-robot
+# https://robotframework.org/SeleniumLibrary/SeleniumLibrary-5.0.0b1.html
+
 from RPA.Browser.Selenium import Selenium
 import time
 
