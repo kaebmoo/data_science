@@ -1,3 +1,4 @@
+# https://robocorp.com/portal/robot/robocorp/example-html-table-robot
 from bs4 import BeautifulSoup
 from RPA.Tables import Table
 
