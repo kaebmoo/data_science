@@ -34,4 +34,4 @@ for month in months:
     grand_total_month = data.loc[data['MONTH'] == month, 'EXPENSE_VALUE'].sum()
     print("Total "+str(month)+" = ", "{:,.2f}".format(grand_total_month))
     
-print(data.groupby('MONTH')['EXPENSE_VALUE'].sum())
+print(data.groupby(['YEAR', 'MONTH'])['EXPENSE_VALUE'].sum())
