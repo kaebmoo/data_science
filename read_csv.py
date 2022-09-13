@@ -2,7 +2,7 @@
 
 import pandas as pd # นำเข้า library pandas
 
-data = pd.read_csv('C:\\DW\\TRN_EXPENSE_BEFORE_20220731.csv') # อ่านไฟล์ ไปไว้ตัวแปร data
+data = pd.read_csv('C:\\DW\\TRN_EXPENSE_BEFORE_20220831.csv') # อ่านไฟล์ ไปไว้ตัวแปร data
 lookup = pd.read_csv('C:\\DW\\EXPENSE_GL_CODE_NT1_NT.csv', encoding= 'tis-620') # อ่านไฟล์ ไปไว้ใน lookup
 
 # print(data.to_string()) 
