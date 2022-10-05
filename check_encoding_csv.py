@@ -1,2 +1,2 @@
-with open('C:\\DW\\TRN_EXPENSE_BEFORE_20220131.csv') as f:
+with open("C:\\Users\\CAT\\Documents\\SAP\\SAP GUI\\pld.txt") as f:
     print(f)
