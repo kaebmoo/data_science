@@ -7,7 +7,7 @@ import glob
 import os
   
 # merging the files
-joined_files = os.path.join("C:\\Report\\Data\\Sales Performance\\2022\\", "EXCEL_SPv4_2022*.csv")
+joined_files = os.path.join("D:\\share\\data\\data_warehouse\\2022\\sale_performance\\", "EXPORT_SP_2022*.csv")
   
 # A list of all joined files is returned
 joined_list = glob.glob(joined_files)
@@ -24,11 +24,11 @@ joined_list = glob.glob(joined_files)
 #        li.append(df)
 # frame = pd.concat(li, axis=0, ignore_index=True)
 
-df = pd.concat((pd.read_csv(f, encoding='cp874') for f in joined_list), ignore_index=True)
+df = pd.concat((pd.read_csv(f, encoding='cp874', sep="|") for f in joined_list), ignore_index=True)
 
 # Finally, the files are joined
 # df = pd.concat(map(pd.read_csv, joined_list), ignore_index=True)
 
 print(df.head)
 
-df.to_csv('C:\\Report\\Data\\Sales Performance\\2022\\SPv4_2022.csv', index=False) # เขียนผลลัพธ์ ลงไฟล์ 
+df.to_csv('D:\\share\\data\\data_warehouse\\2022\\sale_performance\\EXPORT_SP_2022.csv', index=False) # เขียนผลลัพธ์ ลงไฟล์ 

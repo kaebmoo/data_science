@@ -17,3 +17,5 @@ print(df)
 print(df.loc[(df['A'] == 'foo')])
 
 print(df.loc[(df['A'] == 'foo') | (df['A'] == 'oof')])
+
+print(df.loc[:,'B'])

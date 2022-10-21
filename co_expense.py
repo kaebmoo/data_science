@@ -8,11 +8,21 @@
 import pandas as pd
 from datetime import datetime
 
+input_path = "D:\\share\\ตบ\\TRN_EXPENSE_2022\\"
+input_file = "CO_202207.csv"
+
+master_path = "D:\\share\\master\\"
+cost_type_co_master = "COST_TYPE_CO_MASTER.csv"
+accounting_category_co_master = "ACCOUNTING_CATEGORY_CO_MASTER.csv"
+
+output_path = "D:\\share\\ตบ\\TRN_EXPENSE_2022\\"
+output_file = "CO_202207_OUTPUT.csv"
+
 print("start =", datetime.now())
 
-data = pd.read_csv('D:\share\ตบ\TRN_EXPENSE_2022\CO_202207.csv')
-cost_type = pd.read_csv('D:\share\master\COST_TYPE_CO_MASTER.csv', encoding= 'UTF-8')
-acc_category = pd.read_csv('D:\share\master\ACCOUNTING_CATEGORY_CO_MASTER.csv', encoding= 'TIS-620')
+data = pd.read_csv(input_path + input_file)
+cost_type = pd.read_csv(master_path + cost_type_co_master, encoding= 'UTF-8')
+acc_category = pd.read_csv(master_path + accounting_category_co_master, encoding= 'TIS-620')
 
 df = pd.DataFrame(data, columns= ['BUSINESS_PROCESS_CODE'])
 Activity = df['BUSINESS_PROCESS_CODE'].str[-5:]
@@ -60,5 +70,18 @@ data.loc[data['หมวดบัญชี'] == 'C18 ต้นทุนทาง
 print(data.head())
 
 
-data.to_csv('D:\share\ตบ\TRN_EXPENSE_2022\CO_202207_OUTPUT.csv', index=False)
+data.to_csv(output_path + output_file, index=False)
+print("end =", datetime.now())
+
+print()
+print("error checking...")
+
+print("start =", datetime.now())
+
+data = pd.read_csv(output_path + output_file)
+
+bool_series = pd.isnull(data['ประเภทต้นทุน'])
+
+print(data[bool_series])
+
 print("end =", datetime.now())
