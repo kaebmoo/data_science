@@ -5,9 +5,13 @@
 import pandas as pd
 import glob
 import os
-  
+
+input_path = 'D:\\share\\data\\data_warehouse\\sale_performance\\'
+output_path = 'D:\\share\\data\\data_warehouse\\sale_performance\\'
+input_file = 'EXPORT_SP_202*.csv'
+output_file = 'EXPORT_SP_.csv'  
 # merging the files
-joined_files = os.path.join("D:\\share\\data\\data_warehouse\\2022\\sale_performance\\", "EXPORT_SP_2022*.csv")
+joined_files = os.path.join(input_path, input_file)
   
 # A list of all joined files is returned
 joined_list = glob.glob(joined_files)
@@ -29,6 +33,9 @@ df = pd.concat((pd.read_csv(f, encoding='cp874', sep="|") for f in joined_list),
 # Finally, the files are joined
 # df = pd.concat(map(pd.read_csv, joined_list), ignore_index=True)
 
+# https://datatofish.com/strings-to-datetime-pandas/
+df['TIME_KEY_DATE'] = pd.to_datetime(df['TIME_KEY_DATE'], format='%d%b%Y')
+
 print(df.head)
 
-df.to_csv('D:\\share\\data\\data_warehouse\\2022\\sale_performance\\EXPORT_SP_2022.csv', index=False) # เขียนผลลัพธ์ ลงไฟล์ 
+df.to_csv(output_path + output_file, index=False) # เขียนผลลัพธ์ ลงไฟล์ 

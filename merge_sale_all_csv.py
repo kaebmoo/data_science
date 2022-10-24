@@ -6,8 +6,13 @@ import pandas as pd
 import glob
 import os
   
+input_path = 'D:\\Report\\Data\\Sales Performance\\2022\\'
+output_path = 'D:\\Report\\Data\\Sales Performance\\2022\\'
+input_file = 'EXCEL_SPv4_2022*.csv'
+output_file = 'SPv4_2022.csv'  
+
 # merging the files
-joined_files = os.path.join("C:\\Report\\Data\\Sales Performance\\2022\\", "EXCEL_SPv4_2022*.csv")
+joined_files = os.path.join(input_path, input_file)
   
 # A list of all joined files is returned
 joined_list = glob.glob(joined_files)
@@ -29,6 +34,8 @@ df = pd.concat((pd.read_csv(f, encoding='cp874') for f in joined_list), ignore_i
 # Finally, the files are joined
 # df = pd.concat(map(pd.read_csv, joined_list), ignore_index=True)
 
-print(df.head)
+df['TIME_KEY_SAS'] = pd.to_datetime(df['TIME_KEY_SAS'], format='%d%b%Y')
 
-df.to_csv('C:\\Report\\Data\\Sales Performance\\2022\\SPv4_2022.csv', index=False) # เขียนผลลัพธ์ ลงไฟล์ 
+print(df.head)
+    
+df.to_csv(output_path + output_file, index=False) # เขียนผลลัพธ์ ลงไฟล์ 
