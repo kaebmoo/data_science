@@ -1,2 +1,2 @@
-with open("D:\\share\\data\\data_warehouse\\2022\\sale_performance\\EXPORT_SP_2022-1.csv") as f:
+with open("D:\\DW\\ลูกหนี้คงเหลือ\\non2021\\202105 nondw.xlsx.csv") as f:
     print(f)

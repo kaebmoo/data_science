@@ -6,8 +6,8 @@ import pandas as pd
 import glob
 import os
   
-input_path = 'D:\\Report\\Data\\Sales Performance\\2022\\'
-output_path = 'D:\\Report\\Data\\Sales Performance\\2022\\'
+input_path = 'C:\\Report\\Data\\Sales Performance\\2022\\'
+output_path = 'C:\\Report\\Data\\Sales Performance\\2022\\'
 input_file = 'EXCEL_SPv4_2022*.csv'
 output_file = 'SPv4_2022.csv'  
 
@@ -16,6 +16,7 @@ joined_files = os.path.join(input_path, input_file)
   
 # A list of all joined files is returned
 joined_list = glob.glob(joined_files)
+print(joined_list)
 
 # with open('C:\\Report\\Data\\Sales Performance\\2022\\EXCEL_SPv4_2022-1.csv') as t:
 #    print(t)
