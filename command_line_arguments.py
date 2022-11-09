@@ -13,6 +13,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("File", metavar="revenue file", type=str, help="Input file")
 # Read arguments from command line
 args = parser.parse_args()
+print(args)
 input_file = args.File
 
 if args.File:
