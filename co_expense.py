@@ -9,14 +9,14 @@ import pandas as pd
 from datetime import datetime
 
 input_path = "D:\\share\\ตบ\\TRN_EXPENSE_2022\\"
-input_file = "CO_202207.csv"
+input_file = "CO_202210.csv"
 
 master_path = "D:\\share\\master\\"
-cost_type_co_master = "COST_TYPE_CO_MASTER.csv"
-accounting_category_co_master = "ACCOUNTING_CATEGORY_CO_MASTER.csv"
+cost_type_co_master = "MASTER_CO_COST_TYPE.csv"
+accounting_category_co_master = "MASTER_CO_ACCOUNTING_CATEGORY.csv"
 
 output_path = "D:\\share\\ตบ\\TRN_EXPENSE_2022\\"
-output_file = "CO_202207_OUTPUT.csv"
+output_file = "CO_202210_DATA.csv"
 
 print("start =", datetime.now())
 
@@ -81,7 +81,8 @@ print("start =", datetime.now())
 data = pd.read_csv(output_path + output_file)
 
 bool_series = pd.isnull(data['ประเภทต้นทุน'])
-
+print(data[bool_series])
+bool_series = pd.isnull(data['หมวดบัญชี'])
 print(data[bool_series])
 
 print("end =", datetime.now())
