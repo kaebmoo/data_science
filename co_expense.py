@@ -9,7 +9,7 @@ import pandas as pd
 from datetime import datetime
 
 input_path = "D:\\share\\ตบ\\TRN_EXPENSE_2022\\"
-input_file = "CO_202210.csv"
+input_file = "TRN_EXPENSE_NT1_20221031.csv"
 
 master_path = "D:\\share\\master\\"
 cost_type_co_master = "MASTER_CO_COST_TYPE.csv"
