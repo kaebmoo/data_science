@@ -1,0 +1,21 @@
+docker run --name tooljet --restart unless-stopped -p 3000:3000 -v tooljet_data:/var/lib/postgresql/13/main tooljet/try:latest
+
+
+
+
+
+https://frappeframework.com ซับซ้อน แต่ตัว ERPNext มีระบบให้พร้อมใช้งานได้เลย น่าสนใจ แต่ติดตั้งยุ่งยาก
+docker-compose exec backend bench new-site ogonan --mariadb-root-password chang --admin-password chang
+
+https://saltcorn.com/ ใช้จริงน่าจะไม่เหมาะ
+https://www.nocobase.com เหมือนจะใช้งานง่าย แต่ ระดับ production ยังน่าสงสัย
+
+https://budibase.com ใช้ง่าย มีตัวอย่าง template
+docker run -d -t --name=budibase -p 10000:80 -v /local/path/data:/data --restart unless-stopped budibase/budibase:latest
+
+https://www.joget.org เน้น enterprise ไม่ฟรี
+https://www.convertigo.com ยัง run ไม่ได้
+https://rei3.de/ interface ใช้งานยาก
+
+https://www.nocodb.com/
+docker run -d --name nocodb-mysql -v "$(pwd)"/nocodb:/usr/app/data/ -p 8080:8080 -e NC_DB="mysql2://host.docker.internal:3306?u=root&p=password&d=d1" -e NC_AUTH_JWT_SECRET="569a1821-0a93-45e8-87ab-eb857f20a010" nocodb/nocodb:latest
