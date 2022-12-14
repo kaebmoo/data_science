@@ -2,11 +2,11 @@
 
 import pandas as pd
 
-df1 = pd.read_csv("dw_cc_map.csv")
-df2 = pd.read_csv("me_cc_map.csv")
+df1 = pd.read_csv("C:\\dwdata\\bak\\TRN_PREPAID_CARD_DATA_202211_AR.csv")
+df2 = pd.read_csv("C:\\dwdata\\TRN_PREPAID_CARD_DATA_202211.csv")
 
 
 df = pd.concat([df1,df2]).drop_duplicates(keep=False)
 print(df)
 
-df.to_csv('cc_diff.csv', index=False)
+df.to_csv('D:\\tmp\\prepaid_card_data_diff.csv', index=False)
