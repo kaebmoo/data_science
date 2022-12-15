@@ -8,24 +8,27 @@
 import pandas as pd
 from datetime import datetime
 
-input_path = "D:\\share\\ตบ\\TRN_EXPENSE_2022\\" # ตำแหน่งที่เก็บไฟล์ 
-input_file = "TRN_EXPENSE_NT1_20221031.csv"
+input_path = "C:\\DW\\" # ตำแหน่งที่เก็บไฟล์ 
+input_file = "TRN_COS_NT1_20220331.txt" # file name รายงานที่ได้จาก SAP
 
-master_path = "D:\\share\\master\\"
+master_path = "D:\\share\\master\\" # ตำแหน่ง GL CODE master file
 cost_type_co_master = "MASTER_CO_COST_TYPE.csv"
-accounting_category_co_master = "MASTER_CO_ACCOUNTING_CATEGORY.csv"
+# accounting_category_co_master = "MASTER_CO_ACCOUNTING_CATEGORY.csv"
+accounting_category_co_master = "MASTER_EXPENSE_GL_CODE_NT1_NT.csv"
 
 output_path = "D:\\share\\ตบ\\TRN_EXPENSE_2022\\"
-output_file = "CO_202210_DATA.csv"
+output_file = "CO_202203_DATA.csv"
 
 print("start =", datetime.now())
 
-data = pd.read_csv(input_path + input_file)
+data = pd.read_csv(input_path + input_file, sep='\t')
 cost_type = pd.read_csv(master_path + cost_type_co_master, encoding= 'UTF-8')
 acc_category = pd.read_csv(master_path + accounting_category_co_master, encoding= 'TIS-620')
 
-df = pd.DataFrame(data, columns= ['BUSINESS_PROCESS_CODE'])
-Activity = df['BUSINESS_PROCESS_CODE'].str[-5:]
+df = pd.DataFrame(data, columns= ['ACTIVITY_TYPE'])
+# Activity = df['BUSINESS_PROCESS_CODE'].str[-5:]
+
+Activity = df['ACTIVITY_TYPE']
 # https://datatofish.com/left-right-mid-pandas/
 
 # print(Activity)
@@ -62,6 +65,8 @@ data = pd.merge(
 
 del data['Activity_Name']
 data.rename(columns={'COST_TYPE': 'ประเภทต้นทุน'}, inplace=True)
+data.rename(columns={'GROUP_NAME': 'หมวดบัญชี'}, inplace=True)
+
 
 # data['ประเภทต้นทุน'] = ''
 data.loc[data['หมวดบัญชี'] == 'C17 ค่าใช้จ่ายอื่น', 'ประเภทต้นทุน'] = 'ค่าใช้จ่ายอื่น'
@@ -69,7 +74,7 @@ data.loc[data['หมวดบัญชี'] == 'C18 ต้นทุนทาง
 
 print(data.head())
 
-
+data = data[['YEAR', 'MONTH', 'PRODUCT_KEY', 'ACTIVITY_TYPE', 'GL_CODE', 'GL_GROUP', 'EXPENSE_VALUE', 'หมวดบัญชี', 'GL_NAME', 'ประเภทต้นทุน']]
 data.to_csv(output_path + output_file, index=False)
 print("end =", datetime.now())
 
