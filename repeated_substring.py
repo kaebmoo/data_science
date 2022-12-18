@@ -8,7 +8,7 @@ test_str = "GeeksforGeeksGeeksforGeeksGeeksforGeeks"
 test_str = "abcxabc"
 test_str = "acbdfghybdf"
 test_str = "abababababab"
-test_str = "GEEKGEEKGEEKGEEKGEEK"
+test_str = "GEEKGEEKGEEKGEEK"
   
 # printing original string 
 print("The original string is : " + test_str)

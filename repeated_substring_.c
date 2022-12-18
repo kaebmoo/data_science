@@ -15,7 +15,9 @@ char *isRepeat(char str[])
   char *res, *cp;
 
   int n = strlen(str);
-  int lps[n];
+  // int lps[n];
+  int *lps;
+  lps = malloc(n * sizeof(int));
 
   res = (char *) malloc(n+1);
   cp = (char *) malloc(n+1);
@@ -37,6 +39,8 @@ char *isRepeat(char str[])
   else {
     strcpy(res, "-1");
   }
+
+  free(lps);
   return(res);
   // return (len > 0 && n % (n - len) == 0) ? true : false;
 }
@@ -71,7 +75,7 @@ void MathChallenge(char * str) {
 
   // code goes here  
   str = isRepeat(str);
-  printf("%s", str);
+  printf("%s\n", str);
 
 }
 
@@ -95,6 +99,7 @@ int main(void) {
    
   // keep this function call here
   MathChallenge("abababababab");
+  MathChallenge("GEEKGEEKGEEKGEEK");
   return 0;
     
 }
