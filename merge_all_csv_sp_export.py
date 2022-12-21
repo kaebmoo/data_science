@@ -7,9 +7,9 @@ import glob
 import os
 
 input_path = "D:\\share\\data\\data_warehouse\\sale_performance\\"
-input_files = "EXPORT_SP_2022-*.csv"
+input_files = "EXPORT_SP_202*.csv"
 output_path = "D:\\share\\data\\data_warehouse\\sale_performance\\"
-output_file = "EXPORT_SP_2022.csv"
+output_file = "EXPORT_SP__2x21-22.csv"
   
 # merging the files
 joined_files = os.path.join(input_path, input_files)
@@ -18,8 +18,12 @@ print(joined_files)
 # A list of all joined files is returned
 joined_list = glob.glob(joined_files)
   
+df = pd.DataFrame()
 # Finally, the files are joined
-df = pd.concat(map(pd.read_csv, joined_list), ignore_index=True)
+for file in joined_list:
+    datafile = pd.read_csv(file, encoding="cp874", sep="|")
+    df = pd.concat([df, datafile])
+# df = pd.concat(map(pd.read_csv, joined_list), ignore_index=True)
 print(df.head)
 
-df.to_csv(output_file, index=False) # เขียนผลลัพธ์ ลงไฟล์ 
+df.to_csv(output_path + output_file, index=False) # เขียนผลลัพธ์ ลงไฟล์ 
